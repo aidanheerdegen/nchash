@@ -48,7 +48,7 @@ class NCDataHash(object):
         return self.mtime
 
     def getheader(self):
-        self.ncdump = check_output(["ncdump","-h",self.filename])
+        self.ncdump = check_output(["ncdump","-h",self.filename]).decode()
         if self.stripfilename:
             # Strip out the filename from the ncdump header dump. This is
             # not a fundamental part of the netcdf file structure, but is
@@ -60,7 +60,7 @@ class NCDataHash(object):
             self.hashstring = str(self.size) + self.ncdump
         else:
             self.hashstring = str(self.size) + str(self.mtime) + self.ncdump
-        self.md5.update(self.hashstring)
+        self.md5.update(self.hashstring.encode())
 
     def gethash(self):
         return self.md5.hexdigest()
