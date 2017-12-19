@@ -16,6 +16,7 @@ from netCDF4 import Dataset
 import numpy as np
 from glob import glob
 import os
+import string
 import shutil
 
 formats = ['NETCDF3_CLASSIC', 'NETCDF3_64BIT_OFFSET', 'NETCDF4_CLASSIC']
@@ -63,10 +64,10 @@ def make_simple_netcdf_file(ncfiles):
 
     for i,form in enumerate(formats):
 
-        filename = ncfiles[0].replace('.nc', "_{}.nc".format(i))
+        filename = string.replace(ncfiles[0], '.nc', "_{}.nc".format(i))
         make_file(filename, form, data)
 
-        filename = ncfiles[0].replace('.nc', "_{}.nc.notsamename".format(i))
+        filename = string.replace(ncfiles[0], '.nc', "_{}.nc.notsamename".format(i))
         make_file(filename, form, data)
 
 def make_file(filename, form, data):
