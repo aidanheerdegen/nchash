@@ -72,8 +72,10 @@ def make_simple_netcdf_file(ncfiles):
 
 def make_file(filename, form, data):
 
+    filename = os.path.join(tmpdir,filename)
     print("Making {}".format(filename))
-    ncfile = Dataset(os.path.join(tmpdir,filename),'w',format=form) 
+
+    ncfile = Dataset(filename,'w',format=form) 
     nx, ny = data.shape
 
     # create the x and y dimensions.
