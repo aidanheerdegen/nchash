@@ -69,8 +69,12 @@ def main(args):
         nchash = NCDataHash(ncinput,args.noname,args.nomtime)
         print(nchash.gethash() + "  " + ncinput)
 
-if __name__ == "__main__":
-
+def main_argv():
+    
     args = parse_args(sys.argv[1:])
 
     main(args)
+
+if __name__ == "__main__":
+
+    main_argv()
