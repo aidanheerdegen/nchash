@@ -72,7 +72,7 @@ def make_simple_netcdf_file(ncfiles):
 
 def make_file(filename, form, data):
 
-    # print("Making {}".format(filename))
+    print("Making {}".format(filename))
     ncfile = Dataset(os.path.join(tmpdir,filename),'w',format=form) 
     nx, ny = data.shape
 
