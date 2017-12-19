@@ -19,7 +19,7 @@ import os
 import string
 import shutil
 
-formats = ['NETCDF3_CLASSIC', 'NETCDF3_64BIT_OFFSET', 'NETCDF3_64BIT_DATA', 'NETCDF4_CLASSIC']
+formats = ['NETCDF3_CLASSIC', 'NETCDF3_64BIT_OFFSET', 'NETCDF4_CLASSIC']
 
 tmpdir = 'test/tmpfiles'
 
