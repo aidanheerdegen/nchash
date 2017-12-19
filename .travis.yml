@@ -20,7 +20,8 @@ install:
     - pip install --upgrade pytest coverage codecov codeclimate-test-reporter
     - pip install .
 script:
-    - coverage run --source nchash -m py.test
+    # - coverage run --source nchash -m py.test
+    - py.test -s
 after_success:
     - codecov
     - codeclimate-test-reporter
