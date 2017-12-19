@@ -6,7 +6,7 @@
 from setuptools import setup
 
 setup(
-        setup_requires=['pbr>=1.9', 'setuptools>=17.1'],
+        setup_requires=['pbr>=1.9', 'setuptools>=17.1', 'netCDF4>=1.3'],
         pbr=True,
         )
 
