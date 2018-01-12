@@ -19,7 +19,7 @@ requirements:
     run:
         - python
         - six
-        - netCDF4
+        - netcdf4
 
 test:
     source_files:
