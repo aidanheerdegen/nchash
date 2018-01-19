@@ -68,7 +68,7 @@ class NCDataHash(object):
 
 def parse_args(args):
 
-    parser = argparse.ArgumentParser(description="Run ncchk on one or more netCDF files")
+    parser = argparse.ArgumentParser(description="Run nchash on one or more netCDF files")
     parser.add_argument("-n","--noname", help="Do not include filename in the hash (default False)", action='store_true')
     parser.add_argument("-m","--nomtime", help="Do not include file modification time the hash (default False)", action='store_true')
     parser.add_argument("inputs", help="netCDF files", nargs='+')
