@@ -21,8 +21,18 @@ import netCDF4 as nc
 import os, sys
 import argparse
 import re
-from subprocess import check_output
+from subprocess import check_output, CalledProcessError, STDOUT
 from collections import defaultdict
+
+class NotNetcdfFileError(Exception):
+    """Exception raised when attempting to open a non-netCDF file"""
+
+    def __init__(self, filename):
+        assert filename
+        self.filename = filename
+
+    def __str__(self):
+        return "{} is not a netCDF format file\n".format(self.filename)
 
 class NCDataHash(object):
     """A hash used to uniquely identify a netCDF data file
@@ -48,7 +58,13 @@ class NCDataHash(object):
         return self.mtime
 
     def getheader(self):
-        self.ncdump = check_output(["ncdump","-h",self.filename]).decode()
+        try:
+            self.ncdump = check_output(["ncdump","-h",self.filename],stderr=STDOUT).decode()
+        except CalledProcessError as e:
+            if "NetCDF: Unknown file format" in e.stdout.decode():
+                raise NotNetcdfFileError(self.filename)
+            else:
+                raise
         if self.stripfilename:
             # Strip out the filename from the ncdump header dump. This is
             # not a fundamental part of the netcdf file structure, but is
@@ -80,8 +96,11 @@ def main(args):
     hashes = defaultdict(list)
 
     for ncinput in args.inputs:
-        nchash = NCDataHash(ncinput,args.noname,args.nomtime)
-        print(nchash.gethash() + "  " + ncinput)
+        try:
+            nchash = NCDataHash(ncinput,args.noname,args.nomtime)
+            print(nchash.gethash() + "  " + ncinput)
+        except NotNetcdfFileError as e:
+            sys.stderr.write(str(e))
 
 def main_argv():
     
