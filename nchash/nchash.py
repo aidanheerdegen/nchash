@@ -43,11 +43,6 @@ class NCDataHash(object):
         self.stripfilename = noname
         self.ignoremtime = nomtime
         self.filename = filename
-        self.md5 = hashlib.md5()
-        self.size = os.path.getsize(self.filename) 
-        if not self.ignoremtime: self.getmtime()
-        self.getheader()
-        self.makehash()
 
     def getmtime(self):
 
@@ -79,6 +74,11 @@ class NCDataHash(object):
         self.md5.update(self.hashstring.encode())
 
     def gethash(self):
+        self.md5 = hashlib.md5()
+        self.size = os.path.getsize(self.filename) 
+        if not self.ignoremtime: self.getmtime()
+        self.getheader()
+        self.makehash()
         return self.md5.hexdigest()
 
 
