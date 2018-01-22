@@ -24,7 +24,7 @@ import os, time
 from utils import make_simple_netcdf_file, remove_ncfiles, touch, tmpdir, make_tmpdir
 from glob import glob
 
-from nchash.nchash import NCDataHash
+from nchash import NCDataHash
 
 verbose = True
 

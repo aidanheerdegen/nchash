@@ -56,7 +56,7 @@ class NCDataHash(object):
         try:
             self.ncdump = check_output(["ncdump","-h",self.filename],stderr=STDOUT).decode()
         except CalledProcessError as e:
-            if "NetCDF: Unknown file format" in e.stdout.decode():
+            if "NetCDF: Unknown file format" in e.output.decode():
                 raise NotNetcdfFileError(self.filename)
             else:
                 raise
