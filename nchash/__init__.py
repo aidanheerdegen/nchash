@@ -1,1 +1,1 @@
-from nchash import NCDataHash, NotNetcdfFileError
+from .nchash import NCDataHash, NotNetcdfFileError
