@@ -10,11 +10,13 @@ source:
     git_url: ../
 
 build:
-    script: python setup.py install
+    noarch: python
+    script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed"
 
 requirements:
-    build:
+    host:
         - python
+        - pip
         - pbr
     run:
         - python
