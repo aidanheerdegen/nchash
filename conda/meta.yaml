@@ -5,12 +5,13 @@ package:
 build:
     number: {{ GIT_DESCRIBE_NUMBER }}
     string: {{ GIT_BUILD_STR }}
+    noarch: python
+    script: python setup.py install
+    entry_points:
+        - nchash = nchash.nchash:main_argv
 
 source:
     git_url: ../
-
-build:
-    script: python setup.py install
 
 requirements:
     build:
