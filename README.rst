@@ -58,6 +58,8 @@ Conda install::
 Pip install (into a virtual environment)::
 
     pip install nchash
+    
+Note, nchash uses the ncdump tool. This is installed automatically when installing nchash with conda, but not when installing with pip.
 
 ---
 Use
